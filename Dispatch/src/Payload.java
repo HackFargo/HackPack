@@ -5,6 +5,7 @@ import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.text.MessageFormat;
 import java.util.Scanner;
 
 /*Notes:
@@ -12,6 +13,7 @@ import java.util.Scanner;
  * however, the only set methods in the java.net.URL library take more than 5 parameters.
  * Hoping to create a more expressive tool, this is a trade off.
  */
+
 public class Payload {
 
 	private URL target;
@@ -29,10 +31,9 @@ public class Payload {
 	} // exit Payload method.
 	
 	
-	/** TARGET ANALYSIS
-	 * 
-	 * @return
-	 */
+	/////////////////
+	//TARGET ANALYSIS
+	/////////////////
 	public boolean isSet()
 	{
 		return this.target != null;
@@ -57,18 +58,21 @@ public class Payload {
 		}
 	} // exit setTarget method.
 
-	/** SOURCE ANALYSIS
-	 * 
-	 */
+	
+	/////////////////
+	//SOURCE ANALYSIS
+	/////////////////
 	public boolean isEmpty()
 	{
 		return this.source == null;
 	} // exit isEmpty method.
 	
+	
 	public String getSource()
 	{
 		return this.source;
 	} // exit getSource method.
+	
 	
 	private void setSource(InputStream inputStream)
 	{
@@ -79,9 +83,9 @@ public class Payload {
 		}
 	} // exit getSource method.
 	
-	/** EXECUTION 
-	 * 
-	 */
+	///////////
+	//EXECUTION
+	///////////
 	private boolean isReachable()
 	{
 		boolean result = false;
@@ -146,5 +150,13 @@ public class Payload {
 		}
 		
 	} // exit GET method.
+	
+	////////////////////////
+	//EXPECTED JAVA-Y THINGS
+	////////////////////////
+	public String ToString()
+	{
+		return MessageFormat.format("Target: {0} Source: {1}", this.getTarget(), this.isEmpty());
+	}
 	
 } // exit Payload class.
