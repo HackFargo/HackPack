@@ -18,10 +18,12 @@ public class Payload {
 
 	private URL target;
 	private String source;
+
+	private static int timeout = 5000;
 	
-	/** CONSTRUCTORS 
-	 * 
-	 */
+	//////////////
+	//CONSTRUCTORS
+	//////////////
 	public Payload() {}
 	
 	public Payload(String target)
@@ -30,7 +32,7 @@ public class Payload {
 		
 	} // exit Payload method.
 	
-	
+
 	/////////////////
 	//TARGET ANALYSIS
 	/////////////////
@@ -96,7 +98,7 @@ public class Payload {
 				try {
 					String host = this.getTarget().getHost();
 					InetAddress destination = InetAddress.getByName(host);
-					destination.isReachable(5000);
+					destination.isReachable(this.timeout);
 					result = true;
 				} 
 				//Address not resolvable.
@@ -151,6 +153,22 @@ public class Payload {
 		
 	} // exit GET method.
 	
+	
+	/////////
+	//STATICS
+	/////////
+	public static int getTimeout()
+	{
+		return timeout;
+	}
+	
+	public static void setTimeout(int newTimeout)
+	{
+		if (newTimeout > 0)
+			timeout = newTimeout;
+	}
+	
+	
 	////////////////////////
 	//EXPECTED JAVA-Y THINGS
 	////////////////////////
@@ -158,5 +176,7 @@ public class Payload {
 	{
 		return MessageFormat.format("Target: {0} Source: {1}", this.getTarget(), this.isEmpty());
 	}
+	
+	//Add method to convert to JSON.
 	
 } // exit Payload class.
