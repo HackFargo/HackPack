@@ -154,7 +154,7 @@ public class Payload {
 	////////////////////////
 	//EXPECTED JAVA-Y THINGS
 	////////////////////////
-	public String ToString()
+	public String toString()
 	{
 		return MessageFormat.format("Target: {0} Source: {1}", this.getTarget(), this.isEmpty());
 	}
